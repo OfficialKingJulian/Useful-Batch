@@ -16,7 +16,7 @@ if [!instr!] == [] (
 REM    test these at a later stage
 ) else if !instr! == -install (
 	if not exist C:\Windows\System32\Useful-Batch mkdir C:\Windows\System32\Useful-Batch
-    xcopy *.bat C:\Windows\System32\Useful-Batch /q /f
+	xcopy *.bat C:\Windows\System32\Useful-Batch /q /f
 ) else if !instr! == -uninstall (
 	del C:\Windows\System32\Useful-Batch\* /q
 	rmdir C:\Windows\System32\Useful-Batch
