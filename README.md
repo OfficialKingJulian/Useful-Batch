@@ -1,7 +1,7 @@
 # Useful-Batch
 Some batch scripts I use! 
 
-Installation: 
+## Installation: 
 
 `git clone https://github.com/OfficialKingJulian/Useful-Batch`
 
