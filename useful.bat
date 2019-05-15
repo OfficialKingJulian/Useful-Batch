@@ -12,16 +12,13 @@ if [!instr!] == [] (
 	echo -install                    moves commands to your path
 	echo. 
 	echo -uninstall            removes the commands to your path
-
-REM    test these at a later stage
 ) else if !instr! == -install (
-	if not exist C:\Windows\System32\Useful-Batch mkdir C:\Windows\System32\Useful-Batch
-	xcopy *.bat C:\Windows\System32\Useful-Batch /q /f
+	if not exist C:\CMD\ mkdir C:\CMD
+	setx PATH "%PATH%;C:\CMD"
+	xcopy *.bat C:\CMD /q /f
 ) else if !instr! == -uninstall (
-	del C:\Windows\System32\Useful-Batch\* /q
-	rmdir C:\Windows\System32\Useful-Batch
-	
-	
+	del C:\CMD\* /q
+	rmdir C:\CMD
 ) else (
 	echo. 
 	echo ERROR, this command accepts the following instructions:
