@@ -1,6 +1,6 @@
 @echo off
 
-FOR %%A IN (%*) DO (
+for %%A in (%*) do (
 	
 	if exist %%A (
 	  @echo on 
