@@ -14,9 +14,13 @@ if [!instr!] == [] (
 	echo -uninstall            removes the commands to your path
 ) else if !instr! == -install (
 	if not exist C:\CMD\ mkdir C:\CMD
+	if not exist C:\CMD\layouts mkdir C:\CMD\layouts
 	setx PATH "%PATH%;C:\CMD"
 	xcopy *.bat C:\CMD /q /f
+	xcopy layouts\*.txt C:\CMD\layouts /q /f
 ) else if !instr! == -uninstall (
+	del C:\CMD\layouts\* /q
+	rmdir C:\CMD\layouts
 	del C:\CMD\* /q
 	rmdir C:\CMD
 ) else (
