@@ -4,26 +4,29 @@
 set instr=%1
 shift
 
-
-
 setlocal enabledelayedexpansion
-		
+set layoutsfolder=C:\CMD\layouts\
+set loc=!layoutsfolder!!instr!
+
 if [!instr!] == [] (
 	echo. 
-	echo Please name your new folder layout type;
+	echo Uh-oh^^! This command needs instructions^^!
 	echo. 
-) else if !instr! == -install (
-	if not exist C:\CMD\ mkdir C:\CMD
-	setx PATH "%PATH%;C:\CMD"
-	xcopy *.bat C:\CMD /q /f
-) else if !instr! == -uninstall (
-	del C:\CMD\* /q
-	rmdir C:\CMD
+
 ) else (
-	echo. 
-	echo ERROR, this command accepts the following instructions:
-	echo. 
-	echo -install                    moves commands to your path
-	echo. 
-	echo -uninstall            removes the commands to your path
+
+	set /a counter=1
+	copy NUL !loc!.txt >NUL
+
+	:addMore
+
+		set /a counter+=1
+
+		echo/
+		set /p input=What would you like to name the first file in the layout? 
+		echo/
+
+		type "!input!" >>!loc!.txt
+
+	if !counter! == 20 GoTo addMore
 )

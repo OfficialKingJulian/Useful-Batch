@@ -5,7 +5,7 @@ shift
 
 setlocal enabledelayedexpansion
 
-if not exists "C:\CMD\layouts\!instr!.txt" (
+if not exist "C:\CMD\layouts\!instr!.txt" (
 
 	echo.
 	echo The template !instr! did not exist. Please try again.
