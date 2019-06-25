@@ -5,7 +5,7 @@ shift
 
 setlocal enabledelayedexpansion
 
-if not exist "C:\CMD\layouts\!instr!.txt" (
+if not exist "C:\CMD\tools\layouts\!instr!.txt" (
 
 	echo.
 	echo The template !instr! did not exist. Please try again.
@@ -15,7 +15,7 @@ if not exist "C:\CMD\layouts\!instr!.txt" (
 	set /A counter=1
 
 	REM  the new way
-	for /f "tokens=*" %%a in (C:\CMD\layouts\!instr!.txt) do (
+	for /f "tokens=*" %%a in (C:\CMD\tools\layouts\!instr!.txt) do (
 
 	  REM  0 start or no0
 		if !counter! GEQ 10 (
