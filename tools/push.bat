@@ -2,6 +2,6 @@
 
   git add .
  
-    git commit -m "added with Push command"
+    git commit -m "%*"
 
 	git push origin master
