@@ -1,7 +1,22 @@
 @echo off
 
-  git add .
+::  git add .
  
-    git commit -m "%*"
+::    git commit -m "%*"
 
-	git push origin master
+  
+
+  for %%a in (%*) do (
+    if %%a==-f (
+	echo Forcing push...
+    ) else (
+	set "message=%message% %%a"
+    )
+  )
+
+  echo %message%
+  set "message=Update: "
+
+      ::git commit -m "%message%"
+
+    	::git push origin master
