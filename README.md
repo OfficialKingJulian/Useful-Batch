@@ -1,14 +1,24 @@
-# Useful-Batch
-Some batch scripts I use! 
+# dotbatch
+
+Some useful windows dotfiles and/or batch scripts I use fairly regulary.
 
 ## Installation: 
 
-In the Command Prompt, simply...
+AutoHotkey is required to get everything to work as desired. 
 
-`git clone https://github.com/OfficialKingJulian/Useful-Batch`
+Simply...
+
+`git clone https://github.com/OfficialKingJulian/dotbatch`
 
 `cd Useful-Batch`
 
-`useful -install`
+`dotbatch -install`
 
-Then reload the Command Prompt.
+Then reload the Command Prompt. To remove, it's the same but with: 
+
+`dotbatch -uninstall`
+
+## cmdrc.bat 
+
+Press `alt+enter` to run the Command Prompt (an AHK script). This runs it through the script cmdrc.bat, which alters the look of the prompt.
+
