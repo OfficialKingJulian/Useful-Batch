@@ -1,22 +1,25 @@
 @echo off
 
-::  git add .
+  git add .
  
-::    git commit -m "%*"
+    git commit -m "%*"
 
-  
 
+:: Empty 'message' variable
+  set message=
+  set force=
+
+:: Loop through all arguments, 
+:: skipping -f if it's found
   for %%a in (%*) do (
     if %%a==-f (
 	echo Forcing push...
+	set force=-f
     ) else (
-	set "message=%message% %%a"
+	call set "message=%%message%% %%a"
     )
   )
 
-  echo %message%
-  set "message=Update: "
+      git commit -m "%message%"
 
-      ::git commit -m "%message%"
-
-    	::git push origin master
+    	git push %force% origin master
