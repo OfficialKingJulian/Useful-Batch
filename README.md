@@ -10,7 +10,7 @@ Simply...
 
 `git clone https://github.com/OfficialKingJulian/dotbatch`
 
-`cd Useful-Batch`
+`cd dotbatch`
 
 `dotbatch -install`
 

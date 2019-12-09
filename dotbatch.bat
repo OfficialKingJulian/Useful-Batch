@@ -1,5 +1,7 @@
 @echo off
 
+:: Install The Scripts
+
 set instr=%1
 shift
 
@@ -26,7 +28,6 @@ if [!instr!] == [] (
 	setx PATH "%PATH%;C:\CMD\fun"
 	setx PATH "%PATH%;C:\CMD\routine"
 	setx PATH "%PATH%;C:\CMD\tools"
-	setx PATH "%PATH%;C:\CMD\tools\layouts"
 	xcopy *               C:\CMD               /q /f
 	xcopy bin\*           C:\CMD\bin 	   /q /f
 	xcopy fun\*           C:\CMD\fun 	   /q /f
@@ -36,19 +37,19 @@ if [!instr!] == [] (
         xcopy ahk\*           C:\CMD\ahk	   /q /f
         xcopy ahk\run\*       C:\CMD\ahk\run       /q /f
 ) else if !instr! == -uninstall (
-	del C:\CMD\tools\layouts\* /q
+	del   C:\CMD\tools\layouts\* /q
 	rmdir C:\CMD\tools\layouts
-	del C:\CMD\bin\* /q
+	del   C:\CMD\bin\* 	     /q
 	rmdir C:\CMD\bin
-	del C:\CMD\fun\* /q
+	del   C:\CMD\fun\* 	     /q
 	rmdir C:\CMD\fun
-	del C:\CMD\routine\* /q
+	del   C:\CMD\routine\*       /q
 	rmdir C:\CMD\routine
-	del C:\CMD\routine\* /q
+	del   C:\CMD\routine\*       /q
 	rmdir C:\CMD\routine
-	del C:\CMD\tools\* /q
+	del   C:\CMD\tools\*         /q
 	rmdir C:\CMD\tools
-	del C:\CMD\* /q
+	del   C:\CMD\* 		     /q
 	rmdir C:\CMD
 ) else (
 	echo.
@@ -58,3 +59,11 @@ if [!instr!] == [] (
 	echo.
 	echo -uninstall            removes the commands to your path
 )
+
+:: Set Routines
+
+    :: Screen Reminder (Hourly)
+	schtasks /Create \
+		 /tn "Screen Reminder" \
+		 /tr "C:\CMD\routine\take-a-break.vbs" 
+		 /sc hourly /st 00:00:00 /sd 01/01/2010 /ru jorchard	
