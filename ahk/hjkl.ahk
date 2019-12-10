@@ -10,3 +10,7 @@
 +!k::Send +{Up}
 +!l::Send +{Right}
 
+; Alt+/ to search
+  !/::
+  Send, ^f
+  return
