@@ -5,54 +5,56 @@
 ' Using VB Syntax for this stuff on 
 ' the command line is very weird.
 
-      ' Work Time Calculator
-	Function wtcalc(ByRef starttime, endtime)
-	  worktimemins = DateDiff("n", starttime, endtime)
-	  worktimecalc = split(worktimemins/60,".")
-	  wktimeminute = left(round((worktimecalc(1)*60)/100,0),2)
-	  If len(wktimeminute) = 1 Then wktimeminute = "0" & wktimeminute End If
-	  wtcalc       = worktimecalc(0) & _
-	  		 ":" & _ 
-			 wktimeminute
-	End Function
-
-
-
-
+' Work Time Calculator
+  Function wtcalc(ByRef starttime, endtime)
+    worktimemins = DateDiff("n", starttime, endtime)
+    worktimecalc = split(worktimemins/60,".")
+    wktimeminute = left(round((worktimecalc(1)*60)/100,0),2)
+    If len(wktimeminute) = 1 Then wktimeminute = "0" & wktimeminute End If
+    wtcalc       = worktimecalc(0) & _
+                   ":"             & _ 
+                   wktimeminute
+  End Function
 
 
 	Function AddTime
 
 	' Get File Object
-       	  Set fso     = CreateObject("Scripting.FileSystemObject")
-	  Set logfile = fso.OpenTextFile("C:\CMD\hours\log.csv", 1)
+ 	  Set fso     = CreateObject("Scripting.FileSystemObject")
+	  Set logfile = fso.OpenTextFile("C:\CMD\hours\log.csv",2,True)
+    Set readlogfile = fso.OpenTextFile("C:\CMD\hours\log.csv",1)
 
-	' Loop Through File 
-	  Do While logfile.AtEndOfStream <> True
-	    linearray = Split(logfile.ReadLine, ",")
+	' Loop Through Whole File
+	  Do While readlogfile.AtEndOfStream <> True
+
+    ' Split Line To Array
+	    linearray = Split(readlogfile.ReadLine, ",")
 	    linedate  = DateValue(linearray(0))
+
+    ' Found Todays Date
 	    If linedate = Date Then
 
-	    ' Update linearray for the correct column
-	      WScript.Echo Time
+	    ' Update
 	      linearray(1) = Time
-	      output
-	      
+        wscript.echo linearray(1)
+	      outputstring = join(linearray, ",")
+        logfile.WriteLine outputstring
 
 	    End If
 	  Loop
 	  logfile.close
+    readlogfile.close
+
 	End Function
 
 
 
 
-
-      ' Look Up Row
-       	Function FindCurrentRow
+' Look Up Row
+  Function FindCurrentRow
 
 	' Get File Object
-       	  Set fso     = CreateObject("Scripting.FileSystemObject")
+    Set fso     = CreateObject("Scripting.FileSystemObject")
 	  Set logfile = fso.OpenTextFile("log.csv", 1)
 
 	' Loop Through File 
