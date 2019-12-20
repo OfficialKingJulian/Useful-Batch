@@ -15,9 +15,9 @@
     Send {Escape}
   ; Check if toggled on or off
     IfEqual, ischecked, 0xFFFFFF
-      SplashTextOn , 200, 70, ,`nRead recipts off
+      SplashTextOn , 200, 70, ,`nRead receipts off
     Else IfNotEqual, ischecked, 0xFFFFFF
-      SplashTextOn , 200, 70, ,`nRead recipts on
+      SplashTextOn , 200, 70, ,`nRead receipts on
     Sleep 1000
     SplashTextOff
     Return
