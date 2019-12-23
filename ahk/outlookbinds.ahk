@@ -14,13 +14,11 @@
     Send {Enter}
     Send {Escape}
     Send {Escape}
-    ;Check if toggled on or off
     IfEqual, ischecked, 0xFFFFFF
-      SplashTextOn , 200, 70, ,`nRead receipts off
+      TrayTip, Read Receipts On, Outlook read receipts have been enabled.
     Else IfNotEqual, ischecked, 0xFFFFFF
-      SplashTextOn , 200, 70, ,`nRead receipts on
-    Sleep 1000
-    SplashTextOff
+      TrayTip, Read Receipts Off, Outlook read receipts have been disabled.
+;   Sleep 2000
     Return
 ; Flag Mail In Index List
   ^1::
@@ -31,6 +29,23 @@
     Send i
     ;uhhhh
     Send {Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}
+    Send {Enter}
+    Return
+; Ctrl-O by default opens the message; USELESS
+; Remap Ctrl-O to start Out Of Office Assistant
+  ^o::
+    Send !t
+    Send u
+    PixelGetColor, oohon, 313, 401
+    IfEqual, oohon, 0xFFFFFF
+      Send !n
+    IfEqual, oohon, 0xFFFFFF  
+      TrayTip, Out of Office Assistant Off, Outlook 'auto-replies' have been disabled.
+    IfNotEqual, oohon, 0xFFFFFF
+      Send !s
+    IfNotEqual, oohon, 0xFFFFFF
+      TrayTip, Out of Office Assistant On, Outlook 'auto-replies' have been enabled.
+;   Sleep 2000
     Send {Enter}
     Return
 ; Some Nicer Bindings (vim)
