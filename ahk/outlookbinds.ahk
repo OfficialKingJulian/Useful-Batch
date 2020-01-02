@@ -11,6 +11,7 @@
     Send !t
     Send r
     PixelGetColor, ischecked, 79, 184
+    Sleep, 500
     Send {Enter}
     Send {Escape}
     Send {Escape}
