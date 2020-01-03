@@ -2,6 +2,7 @@
 
 ; For deleting cards from
 ; the archived items list
+#IfWinActive, ahk_class Chrome_WidgetWin_1
 #!a::
 Loop, 5 {
 ; Open Card
@@ -18,3 +19,6 @@ Loop, 5 {
   Click
 }
 Return
+#IfWinActive
+#!a::
+  Return
