@@ -48,14 +48,17 @@ Run Outlook.exe, , Hide
 ; Import to Chrome
 Run Chrome.exe
   Sleep, 2000
+; Navigate to Calendar and enter settings
   Send https://calendar.google.com/calendar/r
   Send {Enter}
   Sleep, 5000
   Send s
   Sleep, 1000
+; Go to Import/Export Tab
   MouseMove, 82, 540
   Click
   Sleep, 1000
+; Click File Upload And Locate File On Desktop
   MouseMove, 525, 225
   Click
   Sleep, 1000
@@ -66,6 +69,17 @@ Run Chrome.exe
   Sleep, 500
   Send {Enter}
   Sleep, 500
+; Change to 'Work' Calendar
+  Sleep, 500
+  Send {Tab}
+  Sleep, 500
+  Send {Down}
+  Sleep, 500
+  Send w
+  Sleep, 500
+  Send {Enter}
+  Sleep, 500
+; Click Import Button
   MouseMove, 453, 352
   Click
   Sleep 2000

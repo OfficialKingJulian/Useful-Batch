@@ -10,4 +10,4 @@
   echo ===============================
   echo OUTLOOK 2007 CALENDAR SYNC TASK
   echo ===============================
-    schtasks /Create /tn "Cal Sync" /tr "C:\CMD\routine\outlook-sync.ahk" /sc daily /st 12:55 /sd 01/01/2010 /ru jorchard
+    schtasks /Create /xml "C:\CMD\routine\CalendarSync.xml" /tn "Cal Sync" /ru jorchard
