@@ -1,8 +1,8 @@
 @echo off
 
 
-for %%A in (%*) do (
+for %%a in (%*) do (
 
-	rmdir "%%A" /S /Q
+  if exist %%a\NUL (rmdir "%%a" /S /Q) else (del "%%a")
 
 )
