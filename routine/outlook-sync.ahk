@@ -63,6 +63,10 @@ Run Chrome.exe
   Click
   Sleep, 1000
   Progress, 75  ; Progress 75
+  Send C:\Users\jorchard\Desktop\
+  Send {Enter}
+  Sleep, 500
+  Send +{Tab} 
   Send temp
   Sleep, 500
   Send {Down}
