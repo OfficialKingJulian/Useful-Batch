@@ -28,8 +28,8 @@
     WinKill, %OutputVar%
   return
   ; Enter to start custom CMD 
-	!Enter::Run "C:\CMD\cmdrc.bat"
-	return 
+  !Enter::Run "C:\CMD\cmdrc.bat"
+  return 
 
 ; Misc (all with Alt)
   ; F5 Insert Timestamp

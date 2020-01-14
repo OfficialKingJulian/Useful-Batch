@@ -1,9 +1,14 @@
-; Adding some functionality to outlook, 2007
-; This was a pain to do, but I've got the
-; hang of IfWinActive now...
+; Adding some functionality to Outlook 2007
+
+; Cheatsheet: 
+
+;   Ctrl+w      Toggle Read Receipts On/Off
+;   Ctrl+1(!)   Flag Mail In Index List
+;   Ctrl+o      Start Out Of Office Replies
 
 #IfWinActive, ahk_class rctrl_renwnd32
-; Toggle Read Receipts On/Off
+
+; Read Receipts On/Off
   ^w::
     Send !t
     Send o
@@ -19,8 +24,8 @@
       TrayTip, Read Receipts On, Outlook read receipts have been enabled.
     Else IfNotEqual, ischecked, 0xFFFFFF
       TrayTip, Read Receipts Off, Outlook read receipts have been disabled.
-;   Sleep 2000
     Return
+
 ; Flag Mail In Index List
   ^1::
     Send +{F10}
@@ -28,12 +33,12 @@
     Send m
     Send +{F10}
     Send i
-    ;uhhhh
+    ;hmm
     Send {Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}
     Send {Enter}
     Return
-; Ctrl-O by default opens the message; USELESS
-; Remap Ctrl-O to start Out Of Office Assistant
+
+; Toggle Out Of Office Assistant
   ^o::
     Send !t
     Send u
@@ -46,18 +51,14 @@
       Send !s
     IfNotEqual, oohon, 0xFFFFFF
       TrayTip, Out of Office Assistant On, Outlook 'auto-replies' have been enabled.
-;   Sleep 2000
     Send {Enter}
     Return
-; Some Nicer Bindings (vim)
-  ^h::Send +{Tab}
-  ^j::Send {Down}
-  ^k::Send {Up}
-  ^l::Send {Tab}
-  ^+f::
-    Send +{Tab}+{Tab}+{Tab}
-    Return
+
+; Disable Out Of Outlook
 #IfWinActive
   ^w::
     Return
-
+  ^1::
+    Return
+  ^o::
+    Return
