@@ -15,70 +15,52 @@
   End Function
 
 
-  Function misccode
-	    ' Use Line Array, etc. 
- 	      starttime    = TimeValue(linearray(1))
-        endtime      = TimeValue(linearray(2))
- 	      workingtime  = linearray(3)
- 	      dayoftheweek = linearray(4)
+' If cell is empty; call this
+	Function AddTime(ByVal inout)
 
-	    ' This isn't working... yet
-	      If workingtime = "TBC" Then
-	        Call wtcalc(starttime, endtime)
-	      End If
+	' Get File Objects
+ 	  Set fso      = CreateObject("Scripting.FileSystemObject")
+	  Set editfile = fso.OpenTextFile("C:\CMD\hours\log-temp.csv",2,True)
+    Set readfile = fso.OpenTextFile("C:\CMD\hours\log.csv",1)
 
-	    ' Show Today's Hours
-	      wscript.echo ""
-	      wscript.echo "Today is looking like this... "
-	      wscript.echo "Start time:      " & starttime
-	      wscript.echo "End time:        " & endtime
-	      wscript.echo "Day of the week: " & dayoftheweek
-	      wscript.echo "Hours worked:    " & wtcalc
-	      wscript.echo ""
-
-
-	    ' Attempt at reading input
-	    	WScript.Echo "You've already clocked out today."
-	    	WScript.Echo "Are you sure you want to do that again? (y/n)"
-        confirm = WScript.StdIn.ReadLine
-        If confirm = "y"  or confirm = "yes" Then
-            WScript.Echo "Overwriting..."
-        Else 
-            WScript.Echo "Cancelling..."
-        End If
-
-
-
-  End Function
-
-	Function AddTime
-
-	' Get File Object
- 	  Set fso     = CreateObject("Scripting.FileSystemObject")
-	  Set logfile = fso.OpenTextFile("C:\CMD\hours\log.csv",2,True)
-    Set readlogfile = fso.OpenTextFile("C:\CMD\hours\log.csv",1)
+  ' Current Time
+    curtime = FormatDateTime(Now,4)
 
 	' Loop Through Whole File
-	  Do While readlogfile.AtEndOfStream <> True
+	  Do While readfile.AtEndOfStream <> True
 
-    ' Split Line To Array
-	    linearray = Split(readlogfile.ReadLine, ",")
+    ' Read Current Line, Array Delim Comma
+      line = readfile.readline
+	    linearray = split(line, ",")
 	    linedate  = DateValue(linearray(0))
 
     ' Found Todays Date
 	    If linedate = Date Then
-
-	    ' Update
-	      linearray(1) = Time
-        wscript.echo linearray(1)
-	      outputstring = join(linearray, ",")
-        logfile.WriteLine outputstring
-
+        If inout = "in" Then
+      ' Replacing In
+          editfile.writeline linearray(0) & "," & _
+                             curtime      & "," & _
+                             linearray(2) & "," & _
+                             linearray(3) & "," & _
+                             linearray(4)
+        Else
+      ' Replacing Out
+          editfile.writeline linearray(0) & "," & _
+                             linearray(1) & "," & _
+                             curtime      & "," & _
+                             linearray(3) & "," & _
+                             linearray(4)
+        End If
+      Else
+        editfile.writeline line
 	    End If
 	  Loop
-	  logfile.close
-    readlogfile.close
+	  editfile.close
+    readfile.close
 
+    ' Replace Log with Log-Temp
+      fso.deletefile "log.csv", True
+      fso.movefile   "log-temp.csv", "log.csv"
 	End Function
 
 
@@ -101,36 +83,18 @@
 
 	    If linedate = Date Then
 
-      ' PSEUDOCODETIME
-          ' if clockin requested
-          '   if clockin empty
-          '     add current time as clock in time
-          '   elif clockin not empty
-          '     if overwrite yes
-          '       add current time as clock in time
-          '   else exit
-          ' elif clockout requested 
-          '   if clockin empty
-          '     ask for clock in time or exit
-          '   elif clockout empty
-          '     add current time as clock out time
-          '   elif clockout not empty
-          '     if overwrite yes
-          '       add current time as clock out time
-          '     else exit
-
       ' IN
         If inout = "in" Then
           ' Check if 'In' is populated
           If linearray(1) = "" Then
-
-            ' Just input current time
+             file.close
+             Set file = Nothing
+             Call AddTime(inout)
           Else
-
             ' Check if overwrite is requested
               If OverwriteConfirmation(inout) = "y" Then
                   wscript.echo "Overwriting..."
-                  ' Call overwrite
+                  Call AddTime(inout)
               Else 
                   wscript.echo "Exiting..."
                   wscript.quit 1
@@ -147,21 +111,19 @@
 
           ' Easy clock in
           ElseIf linearray(2) = "" Then
-              wscript.echo "Easy inputting current time"
-
+              Call AddTime(inout)
           ' Clock out populated already
           Else
             ' Check if overwrite is requested
               If OverwriteConfirmation(inout) = "y" Then
                   wscript.echo "Overwriting..."
-                  ' Call overwrite
+                  Call AddTime(inout)
               Else 
                   wscript.echo "Exiting..."
                   wscript.quit 1
               End If
           End If  
         End If 
-
 	    End If
 	  Loop
 	  file.close
@@ -194,4 +156,44 @@
 	End If
 ' Find Row to get underway
   Call FindRow(inout)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+' Misc-Codea
+Function misccode
+' Use Line Array, etc. 
+  starttime    = TimeValue(linearray(1))
+  endtime      = TimeValue(linearray(2))
+  workingtime  = linearray(3)
+  dayoftheweek = linearray(4)
+
+' This isn't working... yet
+  If workingtime = "TBC" Then
+    Call wtcalc(starttime, endtime)
+  End If
+
+' Show Today's Hours
+  wscript.echo ""
+  wscript.echo "Today is looking like this... "
+  wscript.echo "Start time:      " & starttime
+  wscript.echo "End time:        " & endtime
+  wscript.echo "Day of the week: " & dayoftheweek
+  wscript.echo "Hours worked:    " & wtcalc
+  wscript.echo ""
+
+End Function
 
