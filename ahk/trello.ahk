@@ -1,4 +1,4 @@
-; Some Bindings for Trello
+; Adding some Trello bindings
 
 ; For deleting cards from
 ; the archived items list
