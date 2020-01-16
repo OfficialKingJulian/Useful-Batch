@@ -1,6 +1,6 @@
 # Hours VBScript
 
-A tiny script to keep track of hours I've worked, using text files. Written with VBScript for simplicity (at least, compared to batch). 
+A tiny script to keep track of hours I've worked, using a CSV file. Written with VBScript for simplicity (at least, compared to batch). 
 
 ## Usage
 
