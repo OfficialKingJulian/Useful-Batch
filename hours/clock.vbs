@@ -14,8 +14,8 @@
                    wktimeminute
   End Function
 
-
-' If cell is empty; call this
+  
+' Call this to add/overwrite times
 	Function AddTime(ByVal inout)
 
 	' Get File Objects
@@ -32,7 +32,7 @@
     ' Read Current Line, Array Delim Comma
       line = readfile.readline
 	    linearray = split(line, ",")
-	    linedate  = DateValue(linearray(0))
+	    linedate  = datevalue(linearray(0))
 
     ' Found Todays Date
 	    If linedate = Date Then
@@ -59,36 +59,53 @@
     readfile.close
 
     ' Replace Log with Log-Temp
-      fso.deletefile "log.csv", True
-      fso.movefile   "log-temp.csv", "log.csv"
+      fso.deletefile "C:\CMD\hours\log.csv", True
+      fso.movefile   "C:\CMD\hours\log-temp.csv", "C:\CMD\hours\log.csv"
 	End Function
 
 
+' Call if Row not found by Find-Row; makes new row
+  Function NewRow(ByVal inout)
+    Set fso  = CreateObject("Scripting.FileSystemObject")
+    ' 1 read, 2 edit, 8 append
+	  Set appendfile = fso.OpenTextFile("C:\CMD\hours\log.csv",8,True) 
+     ' Current Time
+       curtime = FormatDateTime(Now,4)
+    appendfile.writeline Date & "," & _
+                         curtime & "," & _
+                         "," & _
+                         ","
+    appendfile.close
+    Set appendfile = Nothing
+  End Function
 
 
 ' Look Up Row
   Function FindRow(ByVal inout)
 
+    found = "false"
+
 	' Get File Object
     Set fso  = CreateObject("Scripting.FileSystemObject")
-	  Set file = fso.OpenTextFile("log.csv", 1)
+	  Set afile = fso.OpenTextFile("log.csv", 1)
 
   ' Get each line of file
-	  Do While file.AtEndOfStream <> True
+	  Do While afile.AtEndOfStream <> True
 
     ' Split line into array, comma delim
-	    linearray = Split(file.ReadLine, ",")
+	    linearray = split(afile.readline, ",")
     ' Current date is the first of the array
-	    linedate  = DateValue(linearray(0))
+	    linedate  = datevalue(linearray(0))
 
 	    If linedate = Date Then
+        found = "true"
+        afile.close
+        Set afile = Nothing
 
       ' IN
         If inout = "in" Then
           ' Check if 'In' is populated
           If linearray(1) = "" Then
-             file.close
-             Set file = Nothing
              Call AddTime(inout)
           Else
             ' Check if overwrite is requested
@@ -103,16 +120,13 @@
 
       ' OUT
         Else 
-          ' Haven't clocked in yet; error and quit
           If linearray(1) = "" Then
+          ' Error, trying to clock out when there is no clock in data
             wscript.echo "You cannot clock out when you haven't yet clocked in for the day."
             wscript.echo "Please enter a clock in time."
             wscript.quit 1
-
-          ' Easy clock in
           ElseIf linearray(2) = "" Then
-              Call AddTime(inout)
-          ' Clock out populated already
+            Call AddTime(inout)
           Else
             ' Check if overwrite is requested
               If OverwriteConfirmation(inout) = "y" Then
@@ -126,7 +140,17 @@
         End If 
 	    End If
 	  Loop
-	  file.close
+	  afile.close
+    Set afile = Nothing
+    ' Rown not found
+    If found = "false" And inout = "in" Then 
+      wscript.echo "Recording a new day..."
+      Call NewRow(inout)
+      wscript.quit 1
+    Else 
+      wscript.echo "Error. You cannot add an 'out' time before adding an 'in' time for the day."
+      wscript.quit 1
+    End If
 	End Function
 
 
@@ -196,4 +220,8 @@ Function misccode
   wscript.echo ""
 
 End Function
+
+    On Error Resume Next
+      wscript.echo "Exiting program."
+
 
