@@ -87,7 +87,7 @@
 
 	' Get File Object
     Set fso  = CreateObject("Scripting.FileSystemObject")
-	  Set afile = fso.OpenTextFile("log.csv", 1)
+	  Set afile = fso.OpenTextFile("C:\CMD\hours\log.csv", 1)
 
   ' Get each line of file
 	  Do While afile.AtEndOfStream <> True
@@ -107,11 +107,13 @@
           ' Check if 'In' is populated
           If linearray(1) = "" Then
              Call AddTime(inout)
+             wscript.quit 1
           Else
             ' Check if overwrite is requested
               If OverwriteConfirmation(inout) = "y" Then
                   wscript.echo "Overwriting..."
                   Call AddTime(inout)
+                  wscript.quit 1
               Else 
                   wscript.echo "Exiting..."
                   wscript.quit 1
@@ -127,11 +129,13 @@
             wscript.quit 1
           ElseIf linearray(2) = "" Then
             Call AddTime(inout)
+            wscript.quit 1
           Else
             ' Check if overwrite is requested
               If OverwriteConfirmation(inout) = "y" Then
                   wscript.echo "Overwriting..."
                   Call AddTime(inout)
+                  wscript.quit 1
               Else 
                   wscript.echo "Exiting..."
                   wscript.quit 1
