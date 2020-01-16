@@ -1,7 +1,9 @@
-' Clock.vbs	    by Julian Orchard
+' Clock.vbs	        by Julian Orchard
 
 ' A little script that keeps track of
 ' hours worked, on the command line!
+
+' This handles 'in' and 'out' requests
 
 ' Work Time Calculator
   Function wtcalc(ByRef starttime, endtime)
