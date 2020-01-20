@@ -27,6 +27,7 @@
 
   ' Current Time
     curtime = FormatDateTime(Now,4)
+    wscript.echo curtime
 
 	' Loop Through Whole File
 	  Do While readfile.AtEndOfStream <> True

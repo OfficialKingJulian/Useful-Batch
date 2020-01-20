@@ -2,13 +2,10 @@
 set arg=%1
 shift
 if [%arg%] == [] ( 
-  echo.
-  echo This command requires arguments in order to run: 
-  echo in				clock in argument
-  echo out 				clock out argument
-  goto :eof 
+:: Call check.vbs  
+  cscript C:\CMD\hours\check.vbs //nologo
 ) else (
-:: Call VBS
+:: Call clock.vbs
   cscript C:\CMD\hours\clock.vbs %* //nologo
 )
 
