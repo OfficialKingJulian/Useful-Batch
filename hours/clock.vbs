@@ -5,18 +5,6 @@
 
 ' This handles 'in' and 'out' requests
 
-' Work Time Calculator
-  Function wtcalc(ByRef starttime, endtime)
-    worktimemins = DateDiff("n", starttime, endtime)
-    worktimecalc = split(worktimemins/60,".")
-    wktimeminute = left(round((worktimecalc(1)*60)/100,0),2)
-    If len(wktimeminute) = 1 Then wktimeminute = "0" & wktimeminute End If
-    wtcalc       = worktimecalc(0) & _
-                   ":"             & _ 
-                   wktimeminute
-  End Function
-
-  
 ' Call this to add/overwrite times
 	Function AddTime(ByVal inout)
 
@@ -43,16 +31,12 @@
       ' Replacing In
           editfile.writeline linearray(0) & "," & _
                              curtime      & "," & _
-                             linearray(2) & "," & _
-                             linearray(3) & "," & _
-                             linearray(4)
+                             linearray(2)
         Else
       ' Replacing Out
           editfile.writeline linearray(0) & "," & _
                              linearray(1) & "," & _
-                             curtime      & "," & _
-                             linearray(3) & "," & _
-                             linearray(4)
+                             curtime
         End If
       Else
         editfile.writeline line
@@ -76,8 +60,6 @@
        curtime = FormatDateTime(Now,4)
     appendfile.writeline Date & "," & _
                          curtime & "," & _
-                         "," & _
-                         ","
     appendfile.close
     Set appendfile = Nothing
   End Function
