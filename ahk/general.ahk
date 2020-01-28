@@ -32,6 +32,10 @@
   return 
 
 ; Misc (all with Alt)
+  ; F4 Insert ~ Julian Orchard
+  !F4::
+    Send ~ Julian Orchard
+  return
   ; F5 Insert Timestamp
   !F5::
     FormatTime, time, A_now, ddd d-MMM-yy hh:mm tt
