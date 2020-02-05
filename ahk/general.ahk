@@ -21,6 +21,12 @@
   Send, ^f
   return
 
+; Volume Key; Add Sound
+  ~Volume_Up::
+  ~Volume_Down::
+    SoundPlay, C:\CMD\ahk\res\bing-1.wav
+  return
+
 ; i3wm Similar Bindings (Holding Alt)
   ; q to close current window 
   !q::
@@ -41,3 +47,9 @@
     FormatTime, time, A_now, ddd d-MMM-yy hh:mm tt
     send %time%
   return
+  ; F6 Insert Time and Sign
+  !F6:: 
+    FormatTime, time, A_now, ddd d-MMM-yy hh:mm tt
+    Send %time% ~ JO : {Enter} 
+  return
+
