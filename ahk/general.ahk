@@ -53,18 +53,3 @@
     Send %time% ~ JO : {Enter} 
   return
 
-
-  ; T e x t  L i k e  T h i s
-  !F7::
-	 if (memetext)
-		 {
-       Run, C:\CMD\ahk\test.ahk "off" "off"
-		   memetext := False
-		 } 
-	 else 
-		 {
-       Run, C:\CMD\ahk\test.ahk "on" "on"
-		   memetext := True
-		 }
-  return
-
