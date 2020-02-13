@@ -1,0 +1,92 @@
+Folder PATH listing
+Volume serial number is 4A50-7C5D
+C:.
+³   .gitattributes
+³   .gitignore
+³   cmdrc.bat
+³   dotbatch.bat
+³   example.txt
+³   README.md
+³   
+ÃÄÄÄahk
+³   ³   general.ahk
+³   ³   outlook.ahk
+³   ³   test.ahk
+³   ³   trello.ahk
+³   ³   
+³   ÀÄÄÄres
+³           bing-1.wav
+³           
+ÃÄÄÄbin
+³       msgBox.vbs
+³       
+ÃÄÄÄfun
+³       compliment.bat
+³       hack.bat
+³       live.bat
+³       prank.bat
+³       
+ÃÄÄÄhours
+³       check.vbs
+³       cl.bat
+³       clock.vbs
+³       log.csv
+³       readme.markdown
+³       
+ÃÄÄÄroutine
+³       backup.bat
+³       bkps.txt
+³       CalendarSync.xml
+³       cast.ahk
+³       outlook-sync.ahk
+³       setup.bat
+³       take-a-break.vbs
+³       xlsm-sync.ahk
+³       
+ÃÄÄÄsetup
+³       darkreader.txt
+³       
+ÃÄÄÄshortcuts
+³       c.bat
+³       f.bat
+³       j.bat
+³       l.bat
+³       p.bat
+³       s.bat
+³       
+ÀÄÄÄtools
+    ³   bin.bat
+    ³   break.bat
+    ³   change-folder-icons.bat
+    ³   clear.bat
+    ³   cp.bat
+    ³   desk.bat
+    ³   dev.bat
+    ³   docxtopdf.vbs
+    ³   dtp.bat
+    ³   gitswap.bat
+    ³   gui.bat
+    ³   home.bat
+    ³   idle.vbs
+    ³   layout.bat
+    ³   link-ahk.bat
+    ³   ll.bat
+    ³   ls.bat
+    ³   map-drives.bat
+    ³   mk.bat
+    ³   mkahkrun.bat
+    ³   mklayout.bat
+    ³   mklist.bat
+    ³   nds.bat
+    ³   pingu.bat
+    ³   push.bat
+    ³   remote.bat
+    ³   remove-file-history.bat
+    ³   renr.bat
+    ³   rm.bat
+    ³   search.bat
+    ³   shred-wip.bat
+    ³   tidy.bat
+    ³   touch.bat
+    ³   
+    ÀÄÄÄlayouts
