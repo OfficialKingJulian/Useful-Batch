@@ -53,3 +53,29 @@
     Send %time% ~ JO : {Enter} 
   return
 
+; Insert a random, serious sign off
+  !F7::
+    serious := [] 
+    lines := 0
+    Loop, Read, C:\CMD\ahk\res\serious.txt
+    {
+      serious.Push(A_LoopReadLine) 
+      lines++ 
+    }
+    Random, randum, 0, %lines%
+    Send, % serious[randum]
+    Send, {space}regards, 
+  return
+; Insert a random, silly sign off - X regards, 
+  !F8::
+    silly := [] 
+    lines := 0
+    Loop, Read, C:\CMD\ahk\res\silly.txt
+    {
+      silly.Push(A_LoopReadLine) 
+      lines++ 
+    }
+    Random, randum, 0, %lines%
+    Send, % silly[randum]
+    Send, {space}regards, 
+  return
