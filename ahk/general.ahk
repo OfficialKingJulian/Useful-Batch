@@ -52,7 +52,6 @@
     FormatTime, time, A_now, ddd d-MMM-yy hh:mm tt
     Send %time% ~ JO : {Enter} 
   return
-
 ; Insert a random, serious sign off
   !F7::
     serious := [] 
@@ -64,7 +63,6 @@
     }
     Random, randum, 0, %lines%
     Send, % serious[randum]
-    Send, {space}regards, 
   return
 ; Insert a random, silly sign off - X regards, 
   !F8::
