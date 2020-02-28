@@ -8,8 +8,19 @@ set sea=%2
 shift
 shift
 if [%dat%] == [] (
-  echo Enter a date, like -dd/MM/yyyy to get all file before, or +dd/MM/yyyy to get all files after.
-  echo You can also enter a search path. 
+  echo. 
+  echo History search tool: "history arg1 arg2 arg3" - the order is important
+  echo.
+  echo   arg1     Enter a date in the format with +/- depending 
+  echo            on whether you want before or after the date, 
+  echo            then date formatted dd/MM/yyyy
+  echo.
+  echo   arg2     OPTIONAL: Search for file names and or 
+  echo            extensions e.g. *.jpg or *.png
+  echo.
+  echo   arg3     OPTIONAL: Standard arguments for the command,
+  echo            e.g. /S for recursive search; type forfiles /?
+  echo            for full list of these commands
 ) else (
   if [%sea%] == [] (
     forfiles /S /D %dat% /C "cmd /c echo @path"
