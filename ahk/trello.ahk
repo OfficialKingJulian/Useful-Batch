@@ -19,6 +19,3 @@ Loop, 5 {
   Click
 }
 Return
-#IfWinActive
-#!a::
-  Return
