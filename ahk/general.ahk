@@ -130,14 +130,12 @@
   ; Microsoft Outlook, rctrl_renwnd32
   if WinActive("ahk_class OpusApp") or WinActive("ahk_class PP12FrameClass") or WinActive("ahk_class XLMAIN") or WinActive("ahk_class rctrl_renwnd32") 
   {
-  ; Turn Off Font-mode
     fontmodeoff()
     {
       Hotkey, s, SegoeUI, Off
       Hotkey, t, TwCen, Off
       SplashTextOff
     }
-  ; Start Font-mode
     !f::
       Hotkey, s, SegoeUI, On
       Hotkey, t, TwCen, On
@@ -145,14 +143,51 @@
       WinMove, Font Mode, Enabled., 50, 970
       Sleep, 500
     return
-  ; Segoe UI Light = s
     SegoeUI:
       Send, !hffSegoe{space}UI{space}Light{enter}
       fontmodeoff()
     return
-  ; Tw Cen Mt = t
     TwCen:
       Send, !hffTw{space}Cen{space}MT{enter}
       fontmodeoff()
     return
   }    
+
+; 'mod+e' on roids
+;  Usage; alt+e, then h/w/j/p/s/etc.
+;  opens up folder in Win Expl
+  emodeoff()
+  {
+    Hotkey, h, C, Off
+    Hotkey, w, W, Off
+    Hotkey, j, J, Off
+    Hotkey, p, P, Off
+    Hotkey, s, S, Off
+  }
+  !e::
+    Hotkey, h, C, On
+    Hotkey, w, W, On
+    Hotkey, j, J, On
+    Hotkey, p, P, On
+    Hotkey, s, S, On
+  return
+  C:
+    Run, C:\Users\jorchard
+    emodeoff()
+  return
+  W:
+    Run, C:\Users\jorchard\Documents\Website
+    emodeoff()
+  return
+  J:
+    Run, J:\TSD\
+    emodeoff()
+  return
+  P:
+    Run, P:\
+    emodeoff()
+  return
+  S:
+    Run, S:\
+    emodeoff()
+  return
