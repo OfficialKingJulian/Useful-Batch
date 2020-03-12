@@ -2,19 +2,24 @@
 
 set location=%1
 shift
-		
+
 if [%location%] == [] (
-	echo. 
-	echo Folders:
-	dir /b /o /a:d
-	echo.
-	echo Files:
-	dir /b /o /a:-d
+  ls
+::	echo. 
+::	echo.Folders:
+::	dir /b /o /a:d .
+::	echo.
+::	echo.Files:
+::	dir /b /o /a:-d .
 ) else (
-	echo. 
-	echo Folders:
-	dir /b /o /a:d %location%
-	echo.
-	echo Files:
-	dir /b /o /a:-d %location%
+  if not exist %location% (
+    echo.Cannot find the folder specified. Please try again.
+  ) else (
+    echo. 
+    echo.Folders:
+    dir /b /o /a:d %location%
+    echo.
+    echo.Files:
+    dir /b /o /a:-d %location%
+  )
 )
