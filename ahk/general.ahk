@@ -148,6 +148,7 @@
       Hotkey, j, J, Off
       Hotkey, p, P, Off
       Hotkey, s, S, Off
+      Hotkey, Esc, EModeEscape, Off
     }
     !e::
       Hotkey, h, C, On
@@ -155,6 +156,7 @@
       Hotkey, j, J, On
       Hotkey, p, P, On
       Hotkey, s, S, On
+      Hotkey, Esc, EModeEscape, On
     return
     C:
       Run, C:\Users\jorchard
@@ -174,6 +176,9 @@
     return
     S:
       Run, S:\
+      emodeoff()
+    return
+    EModeEscape:
       emodeoff()
     return
 
@@ -203,18 +208,21 @@
     ; Microsoft PowerPoint, PP12FrameClass
     ; Microsoft Excel, XLMAIN
     ; Microsoft Outlook, rctrl_renwnd32
-    if WinActive("ahk_class OpusApp") or WinActive("ahk_class PP12FrameClass") or WinActive("ahk_class XLMAIN") or WinActive("ahk_class rctrl_renwnd32") 
+    SetTitleMatchMode,2
+    if WinActive("ahk_class OpusApp") or WinActive("ahk_class PP12FrameClass") or WinActive("ahk_class XLMAIN") or WinActive("- Message (HTML)")
     {
     ; Font Mode, alt + f + (font code)
       fontmodeoff()
       {
         Hotkey, s, SegoeUI, Off
         Hotkey, t, TwCen, Off
+        Hotkey, Esc, FontEscape, Off
         SplashTextOff
       }
       !f::
         Hotkey, s, SegoeUI, On
         Hotkey, t, TwCen, On
+        Hotkey, Esc, FontEscape, On
         SplashTextOn, , , Font Mode, Enabled.
         WinMove, Font Mode, Enabled., 50, 970
         Sleep, 500
@@ -225,6 +233,9 @@
       return
       TwCen:
         Send, !hffTw{space}Cen{space}MT{enter}
+        fontmodeoff()
+      return
+      FontEscape:
         fontmodeoff()
       return
     ; Size, alt + s (then number + enter)
