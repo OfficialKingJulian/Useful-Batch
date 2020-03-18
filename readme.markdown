@@ -1,4 +1,4 @@
-# my Windows 10 rice 
+# my Windows 10 rice // scripts
 
 Some useful windows dotfiles and/or batch scripts I use on the daily.
 

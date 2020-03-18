@@ -32,22 +32,23 @@ for %re% %%a in (*) do (
         set f=!f:^ =!
       )
     )
-  echo !f!
 
   REM // jpg file case fixes
     set f=!f:^JPG=jpg!
     set f=!f:^jpeg=jpg!
-  echo !f!
 
   REM // png fix cases
     set f=!f:^PNG=png!
-  echo !f!
 
   REM // HTML, not very used
     set f=!f:^htm=html!
-  echo !f!
+
+  REM // pdf fix case
+    set f=!f:^PDF=pdf!
 
   REM // replace original files
+  REM // this causes the issue with 
+  REM // the /R flag
     ren "%%a" !f!
 )
 

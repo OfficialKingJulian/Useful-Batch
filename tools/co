@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Get Top 10 Corona Stats
+
+  CURL -s https://corona-stats.online/ | HEAD -n 25
