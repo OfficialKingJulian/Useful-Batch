@@ -80,6 +80,10 @@
     !Enter::
       Run "C:\CMD\cmdrc.bat"
     return 
+  ; Start Enter to Run Git Bash
+    #!Enter::
+      Run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Git\Git Bash"
+    return
   ; = Insert  -+-  -+-  -+-  -+-  -+-  -+-  -+-  -+- 
     !=::
       Loop, 8
