@@ -1,7 +1,9 @@
-::@echo off
-:: robocopy is long to type
+@echo off
+
+:: CP, it's just xcopy
+
 set in=%1
 set out=%2
 shift
 shift
-robocopy "%in%" "%out%"
+xcopy "%in%" "%out%" 
