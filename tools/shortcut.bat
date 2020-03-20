@@ -36,12 +36,18 @@
     exit /b
   )
 
+:: Get the Drive
+  set drive=%cd:~0,1%
+
 :: Actually Write the Shortcut
 :: Format of each command...
 ::    @echo off
-::    C:>nul
+::    %drive%:>nul
 ::    cd %cd%
   echo @echo off>%shortdir%\%sname%.bat
-  echo  C:^>nul>>%shortdir%\%sname%.bat
-  echo  cd %cd%>>%shortdir%\%sname%.bat
+  echo %drive%:^>nul>>%shortdir%\%sname%.bat
+  echo cd %cd%>>%shortdir%\%sname%.bat
   
+:: Feedback to the User
+  echo Shortcut should now be working! 
+  echo Try it by typing "%sname%" from another dir.
