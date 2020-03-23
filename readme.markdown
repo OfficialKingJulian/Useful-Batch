@@ -34,6 +34,8 @@ Make sure lots of stuff is in the path environment, such as vim. I might make th
 - `push.bat` : push github repo, quickly, nicely, better
 - `idle.vbs` : keep the screen awake
 - `search.bat` : search; a lot fast (feeling) than gui
+- `shortcut.bat` and `drives.bat` : create shortcuts to folders or drives with minimal effort
+- `add-path.bat` : add a folder to the path environment, and then refresh using `refresh.bat` (stolen from [Chocolatey](https://github.com/chocolatey/choco/blob/b6495f72d1f2b9901747d857467c4ed3f7306391/src/chocolatey.resources/redirects/RefreshEnv.cmd))
 
 `hours\` : An VBS CLI application for keeping track of hours worked with text files. Always a WIP. 
 
