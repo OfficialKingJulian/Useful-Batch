@@ -35,22 +35,34 @@
   ; Insert Markdown Syntax
   ; ~ this could be a little bit nicer
   ;   but for the moment I think it's fine
-    ~h & 1:: title(1) 
-    ~h & 2:: title(2) 
-    ~h & 3:: title(3) 
-    ~h & 4:: title(4) 
-    ~h & 5:: title(5) 
-    ~h & 6:: title(6) 
-    title(numput) 
-    {
-      Send, {backspace}
-      Loop, %numput% 
+    #IfWinActive, ahk_class Chrome_WidgetWin_1
+      ~h & 1:: title(1) 
+      ~h & 2:: title(2) 
+      ~h & 3:: title(3) 
+      ~h & 4:: title(4) 
+      ~h & 5:: title(5) 
+      ~h & 6:: title(6) 
+      title(numput) 
       {
-        Send, {#}
+        Send, {backspace}
+        Loop, %numput% 
+        {
+          Send, {#}
+        }
+        Send, {space}
       }
-      Send, {space}
-    }
-    return
+      return
+    Return
+    #IfWinActive
+  ; Alt + U (U for Underline)
+  ; Draw a straight line from point to point
+    !u::
+      KeyWait, LButton, D
+      MouseGetPos, X1, Y1
+      KeyWait, LButton, U
+      KeyWait, LButton, D
+      MouseGetPos, X2, Y2
+      MouseClickDrag, left, X1, Y1, X2, Y2
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
