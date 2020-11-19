@@ -9,9 +9,9 @@ shift
 setlocal enabledelayedexpansion
 
 if !instr!==personal (
-  git config --global user.name  "OfficialKingJulian"
-  git config --global user.email official@kingjulian.xyz
-    echo You are now using account OfficialKingJulian
+  git config --global user.name  "kingjuliando"
+  git config --global user.email sudo@kingjulian.xyz
+    echo You are now using account kingjuliando
 ) else if !instr!==pro (
   git config --global user.name  "julianorchard"
   git config --global user.email contact@julians.email
