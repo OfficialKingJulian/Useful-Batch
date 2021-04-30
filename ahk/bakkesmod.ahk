@@ -7,8 +7,9 @@
 
 ; Open If RL
   CheckForRL:
-  IfWinActive, Rocket League
+  if WinExist("Rocket League") and !WinExist("ahk_exe BakkesMod.exe")
   {
+    
     Run, "D:\Programs\Bakkesmod"
   }
   Return

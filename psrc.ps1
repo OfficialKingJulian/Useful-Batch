@@ -12,5 +12,6 @@
 # PS Aliases
   function dev { cd C:\CMD }
   function home { cd ~ }
+  function fetch { winfetch -image "C:\Users\julia\Documents\wallpapers\lizard.jpg" }
 
  
