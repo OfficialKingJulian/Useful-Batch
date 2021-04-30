@@ -307,6 +307,7 @@
     return
     ~4 & g::
       Send, GACHIGASM{left 9}{backspace}{right 9}{space 2}
+    return
 
 
   ; Work in Progress...
