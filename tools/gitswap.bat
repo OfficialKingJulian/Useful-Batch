@@ -14,7 +14,7 @@ if !instr!==personal (
     echo You are now using account kingjuliando
 ) else if !instr!==pro (
   git config --global user.name  "julianorchard"
-  git config --global user.email contact@julians.email
+  git config --global user.email julianorchard@protonmail.com
     echo You are now using account JulianOrchard
 ) else (
   echo Accepts arguments of 'personal' or 'pro'
